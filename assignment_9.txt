@@ -1,0 +1,98 @@
+1.
+
+import math
+import datetime
+
+def conversion(time):
+    day = time // (24 * 3600)
+    time = time % (24 * 3600)
+    hour = time // 3600
+    if day > 1:
+        hour = (day * 24) +hour
+    time %= 3600
+    minutes = time // 60
+    time %= 60
+    seconds = time
+    return "%02d:%02d:%02d" % ( hour, minutes, seconds)
+
+def playback_duration(time, speed):
+    time = time.split(':')
+    hours = int(time[0])
+    minutes = int(time[1])
+    seconds = int(time[2])
+
+    total_seconds = hours * 3600 + minutes * 60 + seconds
+    total_seconds = total_seconds/ speed
+    return conversion(total_seconds)
+
+print(playback_duration("00:30:00", 2))
+print(playback_duration("01:20:00", 1.5))
+print(playback_duration("51:20:09", 0.5))
+
+
+2.
+
+
+def pile_of_cubes(m):
+    i = 0
+    sum1 = 0
+    
+    while True:
+        sum1 = sum1 + (i)**3
+        if sum1 == m:
+            break
+        elif sum1 > m:
+            return "None"
+        i += 1
+        
+    return i
+
+print(pile_of_cubes(1071225))
+print(pile_of_cubes(4183059834009))
+print(pile_of_cubes(16))
+
+
+3.
+
+def find_fulcrum(l):
+    for i in range(1,len(l)):
+        if sum(l[:i]) == sum(l[i+1:]):
+            return l[i]
+        
+            
+        
+        
+print(find_fulcrum([1, 2, 4, 9, 10, -10, -9, 3]))        
+print(find_fulcrum([9,1,9]))
+print(find_fulcrum([7, -1, 0, -1, 1, 1, 2, 3]))
+print(find_fulcrum([8, 8, 8, 8]))
+
+4.
+
+
+def sock_merchant(l):
+    count = 0
+    l1 = list(set(l))
+    for i in l1:
+        count += (l.count(i) // 2)
+
+    return count     
+
+print(sock_merchant([10, 20, 20, 10, 10, 30, 50, 10, 20]))
+print(sock_merchant([50, 20, 30, 90, 30, 20, 50, 20, 90]))
+print(sock_merchant([]))
+
+5.
+
+
+def negative_sum(s):
+    l = s.split('-')
+    res = 0
+    for i in range(1,len(l)):
+        l[i] = l[i].split()
+        res += int(l[i][0])
+
+    return -res
+
+print(negative_sum("-12 13%14&-11"))
+print(negative_sum("22 13%14&-11-22 13 12"))
